@@ -1,19 +1,20 @@
 from spectral import *
+from animation import write_cumulative_spectrum
 from scipy import misc
 
 
 def main():
-    # Lena picture
-    l = misc.lena()
-    l = misc.imresize(l, (64, 64))
-    l = l.astype(float)
-    l *= 1. / l.max()
+    # # Lena picture
+    # l = misc.lena()
+    # l = misc.imresize(l, (64, 64))
+    # l = l.astype(float)
+    # l *= 1. / l.max()
 
     # # Black and white sample
     # l = np.array([[1 if i > 20 and i < 44 and j > 20 and j < 44 else 0 for j in range(64)] for i in range(64)])
 
-    # # With random noise
-    # l = np.array([[np.random.random() * 0.1 + (1 if i > 20 and i < 44 and j > 20 and j < 44 else 0) for j in range(64)] for i in range(64)])
+    # With random noise
+    l = np.array([[np.random.random() * 0.2 + (1 if i > 20 and i < 44 and j > 20 and j < 44 else 0) for j in range(64)] for i in range(64)])
 
     out_dir = 'out/box_noise/'
 
@@ -42,6 +43,9 @@ def main():
 
     inv_fourier = inverse_fourier(fourier_signal, eigenvectors)
     inv_fourier_filtered = inverse_fourier_filter(fourier_signal, eigenvectors, eigenvalues, gamma=10)
+
+    # Animation of the "reconstruction" of the signal
+    write_cumulative_spectrum(fourier_signal, eigenvectors, l.shape, out_dir=out_dir + 'animation/')
 
     plot_signal(inv_fourier, shape=graph.shape, name=out_dir + 'inverse_fourier.png')
     plot_signal(inv_fourier_filtered, shape=graph.shape, name=out_dir + 'inverse_fourier_filtered.png')
