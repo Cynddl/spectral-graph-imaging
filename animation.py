@@ -1,5 +1,5 @@
-from spectral import *
 from scipy import misc
+import numpy as np
 
 
 def cumulative_spectrum(f_signal, eigenvectors, shape):

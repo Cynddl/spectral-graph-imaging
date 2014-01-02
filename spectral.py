@@ -14,7 +14,7 @@ from scipy import linalg as LA
 from scipy.sparse import linalg as SLA
 
 
-class ImageGraph:
+class ImageGraph(object):
     """Graph constructed by an image using neighbors relations."""
 
     def __init__(self, img):

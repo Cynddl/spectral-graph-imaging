@@ -1,6 +1,7 @@
-from spectral import *
+from spectral import ImageGraph, plot_signal, inverse_fourier, inverse_fourier_filter
 from animation import write_cumulative_spectrum
 from scipy import misc
+import numpy as np
 
 
 def main():
